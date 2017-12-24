@@ -1,0 +1,11 @@
+:host {
+  &::after {
+    content: 'On';
+  }
+}
+
+:host([active]) {
+  &::after {
+    content: 'Off';
+  }
+}

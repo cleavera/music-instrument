@@ -1,0 +1,1 @@
+declare function require(src: string): string;
