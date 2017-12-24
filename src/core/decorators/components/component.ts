@@ -20,6 +20,12 @@ export function Component(options: IComponentOptions): ClassDecorator {
                     this.$onInit();
                 }
             }
+
+            public disconnectedCallback(): void {
+                if (this.$onDestroy) {
+                    this.$onDestroy();
+                }
+            }
         }
 
         customElements.define(options.selector, EComponent);
