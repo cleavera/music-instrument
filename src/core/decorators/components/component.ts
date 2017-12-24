@@ -14,6 +14,12 @@ export function Component(options: IComponentOptions): ClassDecorator {
                 this.attachShadow.apply(this, [{ mode: 'open' }])
                     .appendChild(document.importNode(template.content, true));
             }
+
+            public connectedCallback(): void {
+                if (this.$onInit) {
+                    this.$onInit();
+                }
+            }
         }
 
         customElements.define(options.selector, EComponent);
