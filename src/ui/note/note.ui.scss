@@ -1,11 +1,12 @@
 :host {
-  &::after {
-    content: 'On';
-  }
+  background: #900;
+  border: 2px solid #999;
+  border-radius: 50%;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
 }
 
 :host([active]) {
-  &::after {
-    content: 'Off';
-  }
+  background: #090;
 }

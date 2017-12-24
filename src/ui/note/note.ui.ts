@@ -5,21 +5,13 @@ import { Component } from '../../core';
     styles: require('./note.ui.scss')
 })
 export class NoteUi extends HTMLElement {
-    public get isOn(): boolean {
-        return this.hasAttribute('active');
-    }
-
-    public set isOn(value: boolean) {
-        if (value) {
-            this.setAttribute('active', '');
-        } else {
-            this.removeAttribute('active');
-        }
-    }
-
     public connectedCallback(): void {
         this.addEventListener('click', () => {
-            this.isOn = !this.isOn;
+            if (this.hasAttribute('active')) {
+                this.removeAttribute('active');
+            } else {
+                this.setAttribute('active', '');
+            }
         });
     }
 }
