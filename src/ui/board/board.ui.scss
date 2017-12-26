@@ -6,10 +6,22 @@ ui-beat {
   padding: 5px;
 
   &.is-active {
-    outline: 2px solid grey;
+    &::before {
+      background: #6AF;
+    }
   }
 
   &:nth-child(4n + 1) {
     border-left: 1px solid grey;
+  }
+
+  &::before {
+    background: #333;
+    border: 1px solid grey;
+    border-radius: 50%;
+    content: '';
+    height: 5px;
+    margin: 10px auto;
+    width: 5px;
   }
 }
