@@ -1,4 +1,5 @@
 :host {
+  color: #555;
   display: flex;
 }
 
@@ -6,6 +7,8 @@ ui-beat {
   padding: 5px;
 
   &.is-active {
+    color: #666;
+
     &::before {
       background: #6AF;
     }
@@ -13,6 +16,10 @@ ui-beat {
 
   &:nth-child(4n + 1) {
     border-left: 1px solid grey;
+
+    &:first-child {
+      border-left: 0;
+    }
   }
 
   &::before {

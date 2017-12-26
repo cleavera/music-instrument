@@ -1,3 +1,5 @@
+import { synthesiser } from '../synthesiser/synthesiser';
+
 export class Note {
     public frequency: number;
 
@@ -6,6 +8,6 @@ export class Note {
     }
 
     public play(): void {
-
+        synthesiser.play(this.frequency);
     }
 }
