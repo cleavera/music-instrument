@@ -1,4 +1,4 @@
-import { Component, HostBinding, HostListener } from '@angular/core';
+import { Component, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'ui-note',
@@ -8,11 +8,22 @@ import { Component, HostBinding, HostListener } from '@angular/core';
     ]
 })
 export class NoteUi {
+    @Input()
     @HostBinding('class.is-active')
     public active: boolean;
 
+    @Output()
+    public onActivate: EventEmitter<void> = new EventEmitter<void>();
+
+    @Output()
+    public onDeactivate: EventEmitter<void> = new EventEmitter<void>();
+
     @HostListener('click', ['$event'])
     public onClick(): void {
-        this.active = !this.active;
+        if (this.active) {
+            this.onDeactivate.emit();
+        } else {
+            this.onActivate.emit();
+        }
     }
 }

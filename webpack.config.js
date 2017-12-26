@@ -48,8 +48,8 @@ module.exports = {
             inject: 'body'
         }),
         new webpack.ContextReplacementPlugin(
-            /angular(\\|\/)core(\\|\/)@angular/,
-            path.resolve(__dirname, '../src')
+            /\@angular(\\|\/)core(\\|\/)esm5/,
+            path.join(__dirname, './client')
         )
     ]
 };

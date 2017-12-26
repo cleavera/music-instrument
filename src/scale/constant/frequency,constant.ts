@@ -1,4 +1,4 @@
-export const frequencies: Array<number> = [
+export const FREQUENCY: Array<number> = [
     16.35,
     17.32,
     18.35,
