@@ -7,6 +7,6 @@
   width: 20px;
 }
 
-:host([active]) {
+:host(.is-active) {
   background: #090;
 }

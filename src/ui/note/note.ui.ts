@@ -1,17 +1,18 @@
-import { Component } from '../../core';
+import { Component, HostBinding, HostListener } from '@angular/core';
 
 @Component({
     selector: 'ui-note',
-    styles: require('./note.ui.scss')
+    template: '',
+    styleUrls: [
+        './note.ui.scss'
+    ]
 })
-export class NoteUi extends HTMLElement {
-    public $onInit(): void {
-        this.addEventListener('click', () => {
-            if (this.hasAttribute('active')) {
-                this.removeAttribute('active');
-            } else {
-                this.setAttribute('active', '');
-            }
-        });
+export class NoteUi {
+    @HostBinding('class.is-active')
+    public active: boolean;
+
+    @HostListener('click', ['$event'])
+    public onClick(): void {
+        this.active = !this.active;
     }
 }

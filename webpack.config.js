@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -15,7 +16,10 @@ module.exports = {
         rules: [
             {
                 test: /\.ts$/,
-                use: ['ts-loader']
+                use: [
+                    'ts-loader',
+                    'angular2-template-loader'
+                ]
             },
             {
                 test: /\.html$/,
@@ -42,6 +46,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html',
             inject: 'body'
-        })
+        }),
+        new webpack.ContextReplacementPlugin(
+            /angular(\\|\/)core(\\|\/)@angular/,
+            path.resolve(__dirname, '../src')
+        )
     ]
 };
