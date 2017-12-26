@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { Beat } from '../../beat/beat';
+import { Board } from '../../board/board';
 import { HalfStepScale, NOTE } from '../../scale';
 import { Ticker } from '../../ticker/ticker';
 
@@ -19,8 +20,11 @@ export class BoardUi {
     @Input()
     public bpm: number;
 
-    public beats: Array<Beat>;
     public ticker: Ticker;
+    public board: Board;
+    public get beats(): Array<Beat> {
+        return this.board.beats;
+    }
 
     private currentBeat: number;
 
@@ -35,12 +39,8 @@ export class BoardUi {
     }
 
     public ngOnChanges(): void {
-        this.beats = [];
         this.ticker = new Ticker(this.bpm);
-
-        for (let x: number = 0; x < this._beats; x++) {
-            this.beats.push(new Beat(new HalfStepScale(NOTE.C4, this.notes)));
-        }
+        this.board = new Board(this.ticker, new HalfStepScale(NOTE.C4, this.notes), this._beats);
 
         this.ticker.register(() => {
             this.tick();
