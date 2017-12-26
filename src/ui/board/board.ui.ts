@@ -1,7 +1,8 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Beat } from '../../beat/beat';
 import { HalfStepScale, NOTE } from '../../scale';
+import { Ticker } from '../../ticker/ticker';
 
 @Component({
     selector: 'ui-board',
@@ -15,13 +16,34 @@ export class BoardUi {
     @Input()
     public notes: number;
 
+    @Input()
+    public bpm: number;
+
     public beats: Array<Beat>;
+    public ticker: Ticker;
 
-    public ngOnChanges(changes: SimpleChanges): void {
-        this.beats = [];
+    private currentBeat: number;
 
-        for (let x: number = 0; x < changes._beats.currentValue; x++) {
-            this.beats.push(new Beat(new HalfStepScale(NOTE.C4, changes.notes.currentValue)));
+    constructor() {
+        this.currentBeat = 0;
+    }
+
+    public tick(): void {
+        if (++this.currentBeat >= this.beats.length) {
+            this.currentBeat = 0;
         }
+    }
+
+    public ngOnChanges(): void {
+        this.beats = [];
+        this.ticker = new Ticker(this.bpm);
+
+        for (let x: number = 0; x < this._beats; x++) {
+            this.beats.push(new Beat(new HalfStepScale(NOTE.C4, this.notes)));
+        }
+
+        this.ticker.register(() => {
+            this.tick();
+        });
     }
 }

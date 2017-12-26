@@ -1,1 +1,1 @@
-<ui-beat [beat]="beat" *ngFor="let beat of beats"></ui-beat>
+<ui-beat [ngClass]="{ 'is-active': currentBeat === i }" [beat]="beat" *ngFor="let beat of beats; let i = index"></ui-beat>

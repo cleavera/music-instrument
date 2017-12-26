@@ -10,6 +10,7 @@ export class Ticker {
     }
 
     constructor(bpm: number = 60) {
+        this.callbacks = [];
         this.bpm = bpm;
         this.tick();
     }
@@ -31,7 +32,7 @@ export class Ticker {
     private tick(): void {
         this.callback();
 
-        setInterval(() => {
+        setTimeout(() => {
             this.tick();
         }, this.interval);
     }

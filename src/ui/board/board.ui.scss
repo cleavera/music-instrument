@@ -1,3 +1,15 @@
 :host {
   display: flex;
 }
+
+ui-beat {
+  padding: 5px;
+
+  &.is-active {
+    outline: 2px solid grey;
+  }
+
+  &:nth-child(4n + 1) {
+    border-left: 1px solid grey;
+  }
+}

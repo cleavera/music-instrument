@@ -2,3 +2,9 @@
   display: flex;
   flex-direction: column;
 }
+
+ui-note {
+  & + & {
+    margin-top: 5px;
+  }
+}
