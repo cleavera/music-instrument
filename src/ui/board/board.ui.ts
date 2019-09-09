@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { Beat } from '../../beat/beat';
 import { Board } from '../../board/board';
-import { HalfStepScale, NOTE } from '../../scale';
+import { MajorScale, NOTE } from '../../scale';
 import { Ticker } from '../../ticker/ticker';
 
 @Component({
@@ -40,7 +40,7 @@ export class BoardUi {
 
     public ngOnChanges(): void {
         this.ticker = new Ticker(this.bpm);
-        this.board = new Board(this.ticker, new HalfStepScale(NOTE.C4, this.notes), this._beats);
+        this.board = new Board(this.ticker, new MajorScale(NOTE.C4, this.notes), this._beats);
 
         this.ticker.register(() => {
             this.tick();
